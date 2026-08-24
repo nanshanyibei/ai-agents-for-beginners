@@ -2,6 +2,12 @@
 
 ![AI Agents for Beginners](./images/repo-thumbnailv3.png)
 
+> 🇨🇳 **China-friendly 版本（无需 Azure）**
+>
+> 中国大陆个人用户无法订阅 Azure OpenAI / Microsoft Foundry（政策限制 `CannotDeployDueToLocalRegulations`）。本分支已将**中文翻译版 notebook**（`translations/zh-CN/` 下，即你学习时直接打开的文件）中的 `FoundryChatClient` / `OpenAIChatClient` 调用替换为与 OpenAI 兼容的 `OpenAIChatCompletionClient`，可直接使用月之暗面 Kimi、MiniMax、通义千问等**国内模型**运行，**无需 Azure 账号**。
+>
+> 配置方式与运行步骤见 👉 [CHINA_FRIENDLY.md](./CHINA_FRIENDLY.md)。
+
 ## A course teaching everything you need to know to start building AI Agents
 
 [![GitHub license](https://img.shields.io/github/license/microsoft/ai-agents-for-beginners.svg)](https://github.com/microsoft/ai-agents-for-beginners/blob/master/LICENSE?WT.mc_id=academic-105485-koreyst)
