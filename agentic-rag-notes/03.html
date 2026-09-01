@@ -1,0 +1,126 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><style>
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:"Microsoft YaHei","PingFang SC","Hiragino Sans GB","Source Han Sans SC",sans-serif; color:#27304A; -webkit-font-smoothing:antialiased; background:#fff; }
+.page { width:1080px; height:1920px; position:relative; overflow:hidden; background:linear-gradient(168deg,#F3F6FF 0%, #FAF3FF 50%, #EFFBF6 100%); display:flex; flex-direction:column; }
+.deco { position:absolute; border-radius:50%; filter:blur(50px); opacity:.30; z-index:0; }
+.d1 { width:360px; height:360px; background:#C9D2FF; top:-120px; right:-100px; }
+.d2 { width:320px; height:320px; background:#FFD6EC; bottom:120px; left:-120px; }
+.d3 { width:260px; height:260px; background:#C7F3E6; top:760px; right:-90px; }
+.header { position:relative; z-index:2; padding:52px 64px 0; }
+.brandrow { display:flex; justify-content:space-between; align-items:center; }
+.chip { display:inline-flex; align-items:center; gap:9px; background:#fff; border:1px solid #E2E7F7; border-radius:999px; padding:8px 18px; font-size:21px; font-weight:800; color:#6C7BFA; box-shadow:0 6px 16px rgba(108,123,250,.10); }
+.chip .dot { width:11px; height:11px; border-radius:50%; background:#6C7BFA; }
+.pageno { font-size:21px; font-weight:800; color:#A6AECB; letter-spacing:2px; }
+h1 { font-size:45px; line-height:1.22; font-weight:800; margin-top:20px; color:#222B45; }
+h1 .num { color:#6C7BFA; }
+.sub { font-size:24px; color:#5A627D; margin-top:10px; font-weight:600; }
+.main { position:relative; z-index:2; flex:1; padding:22px 60px 6px; display:flex; flex-direction:column; min-height:0; justify-content:center; }
+.footer { position:relative; z-index:2; padding:14px 60px 54px; }
+.bot { display:block; }
+.row { display:flex; gap:16px; justify-content:center; align-items:stretch; }
+.col { display:flex; flex-direction:column; align-items:center; gap:12px; }
+.flow { display:flex; flex-direction:column; align-items:center; }
+.arrow { display:block; margin:5px auto; }
+.node { background:#fff; border-radius:18px; padding:13px 20px; box-shadow:0 9px 22px rgba(60,80,160,.10); border:1px solid #EDF0FA; text-align:center; min-width:150px; }
+.node .t { font-size:25px; font-weight:800; }
+.node .d { font-size:18px; color:#5A627D; margin-top:3px; }
+.node.llm { border-top:6px solid #4F9DFF; }
+.node.rag { border-top:6px solid #1FB89A; }
+.node.agent { border-top:6px solid #9B7CF6; }
+.node.tool { border-top:6px solid #FF9F45; }
+.node.loop { border-top:6px solid #FF7EB0; background:#FFF4F9; }
+.node.loop .t { color:#E05A92; }
+.pill { display:inline-block; background:#EEF2FF; color:#5B6BB0; border-radius:999px; padding:7px 15px; font-size:18px; font-weight:700; }
+.tagwrap { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; max-width:430px; }
+.label { font-size:19px; font-weight:800; margin:2px 0 4px; }
+.sec-title { font-size:23px; font-weight:800; color:#6C7BFA; margin:6px 0 8px; display:flex; align-items:center; gap:10px; }
+.sec-title .badge { background:#6C7BFA; color:#fff; border-radius:9px; font-size:18px; padding:3px 11px; font-weight:800; }
+.grid2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.mod { background:#fff; border-radius:18px; padding:14px 16px; box-shadow:0 8px 20px rgba(60,80,160,.09); border:1px solid #EDF0FA; }
+.mod .mt { font-size:21px; font-weight:800; color:#6C7BFA; margin-bottom:8px; }
+.mod .mq { font-size:17px; color:#46506E; line-height:1.5; }
+.mod .mq div { margin:3px 0; padding-left:14px; position:relative; }
+.mod .mq div::before { content:"·"; position:absolute; left:0; color:#9B7CF6; font-weight:800; }
+.cap { background:#fff; border-radius:18px; padding:16px 16px; box-shadow:0 8px 20px rgba(60,80,160,.09); border:1px solid #EDF0FA; }
+.cap .ch { font-size:20px; font-weight:800; margin-bottom:9px; display:flex; align-items:center; gap:8px; }
+.cap .ch .ic { width:14px; height:14px; border-radius:5px; }
+.cap .cpill { display:block; background:#F4F6FF; border-radius:10px; padding:6px 12px; font-size:17px; font-weight:700; color:#46506E; margin:6px 0; }
+.cap .cone { font-size:17px; color:#5A627D; margin-top:8px; font-weight:700; }
+.cards { display:flex; gap:14px; }
+.card-mini { flex:1; background:#fff; border-radius:18px; padding:15px 12px; box-shadow:0 8px 20px rgba(60,80,160,.10); border-top:6px solid #ccc; text-align:center; }
+.card-mini .ct { font-size:22px; font-weight:800; }
+.card-mini .cd { font-size:16px; color:#5A627D; margin-top:4px; line-height:1.35; }
+.memory { margin-top:14px; background:linear-gradient(100deg,#6C7BFA,#9B7CF6); color:#fff; border-radius:18px; padding:18px 24px; font-size:26px; font-weight:800; line-height:1.45; box-shadow:0 12px 28px rgba(108,123,250,.35); }
+.memory small { display:block; font-size:18px; font-weight:600; opacity:.92; margin-top:8px; line-height:1.4; }
+.compare { background:#fff; border-radius:20px; padding:16px 18px; box-shadow:0 8px 20px rgba(60,80,160,.08); border:1px solid #EDF0FA; }
+.compare.old { border-left:7px solid #A6AECB; }
+.compare.new { border-left:7px solid #FF7EB0; }
+.compare h3 { font-size:24px; font-weight:800; }
+.compare .ctag { display:inline-block; font-size:17px; font-weight:800; padding:4px 12px; border-radius:999px; margin-bottom:10px; }
+.compare.old .ctag { background:#EEF0F6; color:#7A819B; }
+.compare.new .ctag { background:#FFE9F3; color:#E05A92; }
+.branch { display:flex; gap:14px; margin-top:10px; }
+.branch .b { flex:1; border-radius:14px; padding:11px 12px; font-size:17px; font-weight:700; line-height:1.4; }
+.branch .b.no { background:#FFF0F6; color:#D84E89; border:1px dashed #FFB3D2; }
+.branch .b.yes { background:#E9FBF5; color:#149B82; border:1px dashed #8FE3CF; }
+.flow-min { display:flex; align-items:center; gap:8px; flex-wrap:wrap; justify-content:center; }
+.flow-min .mn { background:#F4F6FF; border-radius:12px; padding:8px 13px; font-size:18px; font-weight:700; color:#46506E; }
+.flow-min .ma { color:#A6AECB; font-weight:800; font-size:20px; }
+.taskcard { background:linear-gradient(100deg,#EEF1FF,#F6F0FF); border-radius:16px; padding:14px 18px; font-size:21px; font-weight:800; color:#3A3F66; box-shadow:0 6px 16px rgba(108,123,250,.12); }
+.judge { background:#FFF4F9; border:2px solid #FFB3D2; border-radius:16px; padding:12px 18px; text-align:center; font-size:23px; font-weight:800; color:#E05A92; box-shadow:0 8px 18px rgba(255,126,176,.18); }
+.mini-flow { display:flex; align-items:center; gap:6px; flex-wrap:wrap; justify-content:center; }
+.mini-flow .mf { background:#fff; border:1px solid #EDF0FA; border-radius:11px; padding:7px 11px; font-size:16px; font-weight:700; color:#46506E; }
+.mini-flow .mf.hl { background:#6C7BFA; color:#fff; border-color:#6C7BFA; }
+.mini-flow .ma { color:#A6AECB; font-weight:800; font-size:17px; }
+.tip { font-size:18px; color:#5A627D; font-weight:700; text-align:center; margin-top:4px; }
+.kw { display:inline-block; background:#E9FBF5; color:#149B82; border-radius:8px; padding:2px 9px; font-weight:800; font-size:18px; }
+</style></head>
+  <body><div class="page">
+    <div class="deco d1"></div><div class="deco d2"></div><div class="deco d3"></div>
+    <div class="header">
+      <div class="brandrow">
+        <div class="chip"><span class="dot"></span>AI Agent 学习笔记</div>
+        <div class="pageno">03 / 06</div>
+      </div>
+      <h1><span class="num">03</span>｜Agentic RAG：从固定检索到自主检索</h1>
+      <div class="sub">检索，是流程还是决策？</div>
+    </div>
+    <div class="main"><div class="compare old">
+   <h3>传统 RAG</h3>
+   <div class="ctag">固定流程</div>
+   <div class="flow" style="gap:0;">
+     <div class="node "><div class="t">用户问题</div></div>
+     <svg class="arrow" width="32" height="26" viewBox="0 0 32 26"><line x1="16" y1="2" x2="16" y2="20" stroke="#A6AECB" stroke-width="4" stroke-linecap="round"/><path d="M7 14 L16 23 L25 14" fill="none" stroke="#A6AECB" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+     <div class="node "><div class="t">检索</div></div>
+     <svg class="arrow" width="32" height="26" viewBox="0 0 32 26"><line x1="16" y1="2" x2="16" y2="20" stroke="#A6AECB" stroke-width="4" stroke-linecap="round"/><path d="M7 14 L16 23 L25 14" fill="none" stroke="#A6AECB" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+     <div class="node "><div class="t">相关内容</div></div>
+     <svg class="arrow" width="32" height="26" viewBox="0 0 32 26"><line x1="16" y1="2" x2="16" y2="20" stroke="#A6AECB" stroke-width="4" stroke-linecap="round"/><path d="M7 14 L16 23 L25 14" fill="none" stroke="#A6AECB" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+     <div class="node llm"><div class="t">LLM</div></div>
+     <svg class="arrow" width="32" height="26" viewBox="0 0 32 26"><line x1="16" y1="2" x2="16" y2="20" stroke="#A6AECB" stroke-width="4" stroke-linecap="round"/><path d="M7 14 L16 23 L25 14" fill="none" stroke="#A6AECB" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+     <div class="node "><div class="t">答案</div></div>
+   </div>
+ </div>
+ <div style="text-align:center; font-size:26px; font-weight:800; color:#9AA3BD; margin:6px 0;">▼ 加入 Agent 之后</div>
+ <div class="compare new">
+   <h3>Agentic RAG</h3>
+   <div class="ctag">自主决策</div>
+   <div class="flow" style="gap:0;">
+     <div class="node "><div class="t">用户问题</div></div>
+     <svg class="arrow" width="32" height="26" viewBox="0 0 32 26"><line x1="16" y1="2" x2="16" y2="20" stroke="#A6AECB" stroke-width="4" stroke-linecap="round"/><path d="M7 14 L16 23 L25 14" fill="none" stroke="#A6AECB" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+     <div class="node agent"><div class="t">Agent · 理解任务</div></div>
+     <svg class="arrow" width="32" height="26" viewBox="0 0 32 26"><line x1="16" y1="2" x2="16" y2="20" stroke="#1FB89A" stroke-width="4" stroke-linecap="round"/><path d="M7 14 L16 23 L25 14" fill="none" stroke="#1FB89A" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+     <div class="node rag"><div class="t">决定检索 · 制定 Query · 检索知识</div></div>
+     <svg class="arrow" width="32" height="26" viewBox="0 0 32 26"><line x1="16" y1="2" x2="16" y2="20" stroke="#A6AECB" stroke-width="4" stroke-linecap="round"/><path d="M7 14 L16 23 L25 14" fill="none" stroke="#A6AECB" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+     <div class="node loop"><div class="t">判断结果是否足够</div></div>
+   </div>
+   <div class="branch">
+     <div class="b no">不够<br><div class="node loop"><div class="t">↺ 修改 Query 再次检索</div></div></div>
+     <div class="b yes">足够<br>继续推理 → 最终答案</div>
+   </div>
+ </div></div>
+    <div class="footer"><div style="display:flex; gap:14px;">
+   <div class="card-mini" style="border-top-color:#A6AECB; flex:1;"><div class="ct" style="color:#7A819B;">普通 RAG</div><div class="cd">检索是<b>流程</b><br>一步到位</div></div>
+   <div class="card-mini" style="border-top-color:#FF7EB0; flex:1;"><div class="ct" style="color:#E05A92;">Agentic RAG</div><div class="cd">检索是<b>决策</b><br>可规划·可迭代</div></div>
+ </div>
+ <div class="memory">Agent 决定<b>如何获取知识</b>，以及<b>是否需要继续获取知识</b><small>Agentic RAG 不只是"RAG + Agent"，而是让 Agent 参与检索的规划、判断与迭代。</small></div></div>
+  </div></body></html>
